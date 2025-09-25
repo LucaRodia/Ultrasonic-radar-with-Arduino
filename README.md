@@ -14,13 +14,17 @@ The ultrasonic distance sensor gets the distance (converting the travel time of 
 Simpe script to check is the serial communication between Arduino and VSCode is working.
 
 #### sweep_plotter.py
-Given the angle theta (from serial port) it calculates the proper equation to plot a straight line with and angle theta in respect to the bottom of the screen.
-It uses tangent and linear translations to get the equation of the line.
+This script reads the angle θ from the serial port and calculates the equation of a straight line forming that angle with the bottom edge of the screen.
 
-Then based on a coefficient k (arbitrary) it sets the beginning of the plotted line proportionally to the distance (from serial port).
+Using trigonometric functions (primarily tangent) and linear transformations, it derives the correct line equation to visualize the radar sweep.
 
+The start point of the line is determined by a coefficient k, which scales proportionally to the measured distance (also read from the serial port). This simulates the effect of the detected object’s position in space.
 
-## Problems/Future improovements
+## Known Issues / Future Improvements
 
-1. The serial port looks instable --> find a better way to transmit data. Current idea: use another component just to transmit datas.
-2. Improove x0 (the beginning of the plotted line). Currently x0 distance from the origin is proportional to the distance, but to get a circle we need to consider the projection on the bottom, otherwise the circunference gets shrinked in the middle and stretche on the borders.
+1. Unstable serial communication
+The data received from the serial port can be unreliable. A potential solution is to delegate data transmission to a dedicated component or microcontroller, improving consistency.
+
+2. Incorrect distance projection
+The current method uses a linear proportionality between the distance and the start of the plotted line (x₀). This distorts the circular sweep effect: the arc appears shrinked near the center and stretched near the edges.
+To correct this, distance should be projected onto the bottom axis, preserving the circular symmetry and generating a proper radar-like sweep.
