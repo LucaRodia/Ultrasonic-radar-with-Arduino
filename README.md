@@ -22,9 +22,9 @@ The start point of the line is determined by a coefficient k, which scales propo
 
 ## Known Issues / Future Improvements
 
-1. Unstable serial communication
+#### Unstable serial communication
 The data received from the serial port can be unreliable. A potential solution is to delegate data transmission to a dedicated component or microcontroller, improving consistency.
 
-2. Incorrect distance projection
+#### Incorrect distance projection
 The current method uses a linear proportionality between the distance and the start of the plotted line (x₀). This distorts the circular sweep effect: the arc appears shrinked near the center and stretched near the edges.
 To correct this, distance should be projected onto the bottom axis, preserving the circular symmetry and generating a proper radar-like sweep.
